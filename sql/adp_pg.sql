@@ -853,7 +853,7 @@ CREATE TABLE "adp"."sys_dept" (
   "phone" varchar(20) COLLATE "pg_catalog"."default" DEFAULT ''::character varying,
   "email" varchar(20) COLLATE "pg_catalog"."default" DEFAULT ''::character varying,
   "status" char(1) COLLATE "pg_catalog"."default" DEFAULT '0'::bpchar,
-  "del_flag" char(1) COLLATE "pg_catalog"."default",
+  "del_flag" char(1) COLLATE "pg_catalog"."default" DEFAULT '0',
   "create_by" varchar(64) COLLATE "pg_catalog"."default" DEFAULT ''::character varying,
   "create_time" timestamp(6),
   "update_by" varchar(64) COLLATE "pg_catalog"."default" DEFAULT ''::character varying,
@@ -3260,7 +3260,7 @@ CREATE TABLE "adp"."sys_role" (
   "role_sort" int4,
   "data_scope" char(1) COLLATE "pg_catalog"."default",
   "status" char(1) COLLATE "pg_catalog"."default" DEFAULT '0'::bpchar,
-  "del_flag" char(1) COLLATE "pg_catalog"."default",
+  "del_flag" char(1) COLLATE "pg_catalog"."default" DEFAULT '0',
   "create_by" varchar(64) COLLATE "pg_catalog"."default" DEFAULT ''::character varying,
   "create_time" timestamp(6),
   "update_by" varchar(64) COLLATE "pg_catalog"."default" DEFAULT ''::character varying,
@@ -3426,7 +3426,7 @@ CREATE TABLE "adp"."sys_user" (
   "password" varchar(100) COLLATE "pg_catalog"."default" DEFAULT ''::character varying,
   "salt" varchar(100) COLLATE "pg_catalog"."default" DEFAULT ''::character varying,
   "status" char(1) COLLATE "pg_catalog"."default" DEFAULT '0'::bpchar,
-  "del_flag" char(1) COLLATE "pg_catalog"."default" DEFAULT ''::bpchar,
+  "del_flag" char(1) COLLATE "pg_catalog"."default" DEFAULT '0',
   "login_ip" varchar(50) COLLATE "pg_catalog"."default" DEFAULT ''::character varying,
   "login_date" timestamp(6),
   "pwd_update_date" timestamp(6),
@@ -3449,7 +3449,7 @@ COMMENT ON COLUMN "adp"."sys_user"."avatar" IS '头像路径';
 COMMENT ON COLUMN "adp"."sys_user"."password" IS '密码';
 COMMENT ON COLUMN "adp"."sys_user"."salt" IS '盐加密';
 COMMENT ON COLUMN "adp"."sys_user"."status" IS '帐号状态:0正常,1禁用';
-COMMENT ON COLUMN "adp"."sys_user"."del_flag" IS '拒绝登录描述';
+COMMENT ON COLUMN "adp"."sys_user"."del_flag" IS '删除标志';
 COMMENT ON COLUMN "adp"."sys_user"."login_ip" IS '最后登录IP';
 COMMENT ON COLUMN "adp"."sys_user"."login_date" IS '最后登录时间';
 COMMENT ON COLUMN "adp"."sys_user"."pwd_update_date" IS '密码最后更新时间';
