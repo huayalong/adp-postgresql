@@ -848,7 +848,7 @@ CREATE TABLE "adp"."sys_dept" (
   "parent_id" int8 DEFAULT 0,
   "ancestors" varchar(50) COLLATE "pg_catalog"."default",
   "dept_name" varchar(30) COLLATE "pg_catalog"."default" DEFAULT ''::character varying,
-  "order_num" int4 DEFAULT 0,
+  "order_num" varchar(10) DEFAULT '0',
   "leader" varchar(20) COLLATE "pg_catalog"."default" DEFAULT ''::character varying,
   "phone" varchar(20) COLLATE "pg_catalog"."default" DEFAULT ''::character varying,
   "email" varchar(20) COLLATE "pg_catalog"."default" DEFAULT ''::character varying,
