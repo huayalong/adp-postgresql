@@ -226,10 +226,10 @@
 		</dependency>
 		
 		 <!-- Mysql驱动包 -->
-        <dependency>
+        <!-- <dependency>
             <groupId>mysql</groupId>
             <artifactId>mysql-connector-java</artifactId>
-        </dependency>
+        </dependency> -->
 
 		<!--velocity代码生成使用模板 -->
 		<dependency>
@@ -239,10 +239,16 @@
 		</dependency>
 		
 		 <!-- postgresql驱动包 -->
-		<dependency>
+		<!-- <dependency>
 			<groupId>org.postgresql</groupId>
 			<artifactId>postgresql</artifactId>
-		</dependency>
+		</dependency> -->
+		<!-- 达梦数据库驱动包 -->
+		<dependency>
+            <groupId>org.dm</groupId>
+            <artifactId>Dm7JdbcDriver</artifactId>
+            <version>1.7</version>
+        </dependency> 
 
 		<!-- 阿里JSON解析器 -->
 		<dependency>
@@ -281,7 +287,7 @@
         </plugins>
     </build>
 	
-	<repositories>
+	<!--<repositories>
 		<repository>
 			<id>public</id>
 			<name>aliyun nexus</name>
@@ -305,5 +311,5 @@
 			</snapshots>
 		</pluginRepository>
 	</pluginRepositories>
-	
+	-->
 </project>

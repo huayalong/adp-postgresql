@@ -18,7 +18,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
     </resultMap>
 
     <sql id="selectSysModelVo">
-        select model_id, model_name, model_mark, model_type, model_info, create_by, create_time, update_by, update_time, remark from sys_model
+        select * from "ADP"."sys_model"
     </sql>
 
     <select id="selectSysModelList" parameterType="SysModel" resultMap="SysModelResult">
@@ -37,7 +37,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
     </select>
         
     <insert id="insertSysModel" parameterType="SysModel" useGeneratedKeys="true" keyProperty="modelId">
-        insert into sys_model
+        insert into "ADP"."sys_model"
         <trim prefix="(" suffix=")" suffixOverrides=",">
             <if test="modelName != null  and modelName != ''">model_name,</if>
             <if test="modelMark != null  and modelMark != ''">model_mark,</if>
@@ -63,7 +63,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
     </insert>
 
     <update id="updateSysModel" parameterType="SysModel">
-        update sys_model
+        update "ADP"."sys_model"
         <trim prefix="SET" suffixOverrides=",">
             <if test="modelName != null  and modelName != ''">model_name = #{modelName},</if>
             <if test="modelMark != null  and modelMark != ''">model_mark = #{modelMark},</if>
@@ -79,11 +79,11 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
     </update>
 
     <delete id="deleteSysModelById" parameterType="Integer">
-        delete from sys_model where model_id = #{modelId}
+        delete from "ADP"."sys_model" where model_id = #{modelId}
     </delete>
 
     <delete id="deleteSysModelByIds" parameterType="String">
-        delete from sys_model where model_id in 
+        delete from "ADP"."sys_model" where model_id in 
         <foreach item="modelId" collection="array" open="(" separator="," close=")">
             #{modelId}
         </foreach>
