@@ -21,8 +21,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	</resultMap>
 	
 	<sql id="selectDictDataVo">
-        select *
-		from "ADP"."sys_dict_data"
+        select * from "ADP"."sys_dict_data"
     </sql>
 
 	<select id="selectDictDataList" parameterType="SysDictData" resultMap="SysDictDataResult">
@@ -89,7 +88,8 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	</update>
 	
 	<update id="updateDictDataType" parameterType="String">
- 		update "ADP"."sys_dict_data" set dict_type = #{newDictType} where "dict_type" = #{oldDictType}
+ 		update "ADP"."sys_dict_data" set "dict_type" = #{newDictType} 
+ 		where "dict_type" = #{oldDictType}
 	</update>
  	
  	<insert id="insertDictData" parameterType="SysDictData">

@@ -17,18 +17,17 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
     </resultMap>
     
     <sql id="selectConfigVo">
-        select *
-		from "ADP"."sys_config"
+        select * from "ADP"."sys_config"
     </sql>
     
     <!-- 查询条件 -->
 	<sql id="sqlwhereSearch">
 		<where>
 			<if test="configId !=null">
-				and config_id = #{configId}
+				and "config_id" = #{configId}
 			</if>
 			<if test="configKey !=null and configKey != ''">
-				and config_key = #{configKey}
+				and "config_key" = #{configKey}
 			</if>
 		</where>
 	</sql>
@@ -42,37 +41,37 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         <include refid="selectConfigVo"/>
         <where>
 			<if test="configName != null and configName != ''">
-				AND config_name like concat('%', #{configName}, '%')
+				AND "config_name" like concat('%', #{configName}, '%')
 			</if>
 			<if test="configType != null and configType != ''">
-				AND config_type = #{configType}
+				AND "config_type" = #{configType}
 			</if>
 			<if test="configKey != null and configKey != ''">
-				AND config_key like concat('%', #{configKey}, '%')
+				AND "config_key" like concat('%', #{configKey}, '%')
 			</if>
 			<if test="params.beginTime != null and params.beginTime != ''"><!-- 开始时间检索 -->
-				and to_char(create_time,'yyyy-MM-dd') &gt;= #{params.beginTime}
+				and to_char("create_time",'yyyy-MM-dd') &gt;= #{params.beginTime}
 			</if>
 			<if test="params.endTime != null and params.endTime != ''"><!-- 结束时间检索 -->
-				and to_char(create_time,'yyyy-MM-dd') &lt;= #{params.endTime}
+				and to_char("create_time",'yyyy-MM-dd') &lt;= #{params.endTime}
 			</if>
 		</where>
     </select>
     
     <select id="checkConfigKeyUnique" parameterType="String" resultMap="SysConfigResult">
         <include refid="selectConfigVo"/>
-        where config_key = #{configKey}
+        where "config_key" = #{configKey}
     </select>
     
     <insert id="insertConfig" parameterType="SysConfig">
         insert into "ADP"."sys_config" (
-			<if test="configName != null and configName != '' ">config_name,</if>
-			<if test="configKey != null and configKey != '' ">config_key,</if>
-			<if test="configValue != null and configValue != '' ">config_value,</if>
-			<if test="configType != null and configType != '' ">config_type,</if>
-			<if test="createBy != null and createBy != ''">create_by,</if>
-			<if test="remark != null and remark != ''">remark,</if>
- 			create_time
+			<if test="configName != null and configName != '' ">"config_name",</if>
+			<if test="configKey != null and configKey != '' ">"config_key",</if>
+			<if test="configValue != null and configValue != '' ">"config_value",</if>
+			<if test="configType != null and configType != '' ">"config_type",</if>
+			<if test="createBy != null and createBy != ''">"create_by",</if>
+			<if test="remark != null and remark != ''">"remark",</if>
+ 			"create_time"
         )values(
 			<if test="configName != null and configName != ''">#{configName},</if>
 			<if test="configKey != null and configKey != ''">#{configKey},</if>
@@ -87,19 +86,19 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
     <update id="updateConfig" parameterType="SysConfig">
         update "ADP"."sys_config" 
         <set>
-            <if test="configName != null and configName != ''">config_name = #{configName},</if>
-            <if test="configKey != null and configKey != ''">config_key = #{configKey},</if>
-            <if test="configValue != null and configValue != ''">config_value = #{configValue},</if>
-            <if test="configType != null and configType != ''">config_type = #{configType},</if>
-            <if test="updateBy != null and updateBy != ''">update_by = #{updateBy},</if>
-            <if test="remark != null">remark = #{remark},</if>
- 			update_time = now()
+            <if test="configName != null and configName != ''">"config_name" = #{configName},</if>
+            <if test="configKey != null and configKey != ''">"config_key" = #{configKey},</if>
+            <if test="configValue != null and configValue != ''">"config_value" = #{configValue},</if>
+            <if test="configType != null and configType != ''">"config_type" = #{configType},</if>
+            <if test="updateBy != null and updateBy != ''">"update_by" = #{updateBy},</if>
+            <if test="remark != null">"remark" = #{remark},</if>
+ 			"update_time" = now()
         </set>
-        where config_id = #{configId}
+        where "config_id" = #{configId}
     </update>
 	
     <delete id="deleteConfigByIds" parameterType="String">
-        delete from "ADP"."sys_config" where config_id in 
+        delete from "ADP"."sys_config" where "config_id" in 
         <foreach item="configId" collection="array" open="(" separator="," close=")">
         	#{configId}
         </foreach>

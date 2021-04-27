@@ -10,19 +10,19 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	</resultMap>
 	
 	<select id="selectUserRoleByUserId" parameterType="Long" resultMap="SysUserRoleResult">
-		select * from "ADP"."sys_user_role" where user_id = #{userId}
+		select * from "ADP"."sys_user_role" where "user_id" = #{userId}
 	</select>
 
 	<delete id="deleteUserRoleByUserId" parameterType="Long">
-		delete from "ADP"."sys_user_role" where user_id = #{userId}
+		delete from "ADP"."sys_user_role" where "user_id" = #{userId}
 	</delete>
 	
 	<select id="countUserRoleByRoleId" resultType="Integer">
-	    select count(1) from "ADP"."sys_user_role" where role_id = #{roleId}  
+	    select count(1) from "ADP"."sys_user_role" where "role_id" = #{roleId}
 	</select>
 	
 	<delete id="deleteUserRole" parameterType="Long">
- 		delete from "ADP"."sys_user_role" where user_id in
+ 		delete from "ADP"."sys_user_role" where "user_id" in
  		<foreach collection="array" item="userId" open="(" separator="," close=")">
  			#{userId}
         </foreach> 

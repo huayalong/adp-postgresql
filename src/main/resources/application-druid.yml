@@ -21,7 +21,7 @@ spring:
             # 配置一个连接在池中最大生存的时间，单位是毫秒
             maxEvictableIdleTimeMillis: 900000
             # 配置检测连接是否有效
-            validationQuery: SELECT * FROM sys_dept
+            validationQuery: SELECT * FROM "ADP"."sys_dept"
             testWhileIdle: true
             testOnBorrow: false
             testOnReturn: false
