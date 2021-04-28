@@ -41,10 +41,25 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
     
     <select id="selectDbTableColumnsByName" parameterType="String" resultMap="GenTableColumnResult">
 		select
-            column_name, is_required, is_pk, sort, column_comment, is_increment, column_type
-        from
-            view_self_table_columns
-        where table_name = (#{tableName})
+            l.column_name, 
+            l.nullable AS is_required, 
+            l.data_length AS columnLength,
+            l.data_precision AS dataPrecision,
+            l.column_id AS sort, 
+            l.data_type AS column_type 
+        FROM user_tab_columns l 
+        where l.table_name = #{tableName} 
+        
+        <!-- 
+        select
+		    l.column_name AS c, 
+		    l.nullable AS is_required, 
+		    l.data_length AS columnLength,
+		    l.data_precision AS dataPrecision, 
+		    l.data_type AS column_type,
+		    m.comments AS columnComment   
+		FROM  user_col_comments m left join user_tab_columns l on l.column_name = m.column_name    
+		where m.table_name = #{tableName}  -->
 	</select>
     
     <insert id="insertGenTableColumn" parameterType="GenTableColumn" useGeneratedKeys="true" keyProperty="columnId">

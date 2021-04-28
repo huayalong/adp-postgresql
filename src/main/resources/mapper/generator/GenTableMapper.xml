@@ -69,26 +69,27 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		</where>
 	</select>
 
-	<select id="selectDbTableList" parameterType="GenTable" resultMap="GenTableResult">
-		select * FROM USER_TABLES
-		where table_name NOT LIKE 'qrtz_%' AND table_name NOT LIKE 'gen_%'
+	<select id="selectDbTableList" parameterType="GenTable" resultType="GenTable">
+		select table_name AS tableName ,comments AS tableComment FROM user_tab_comments
+		where table_name NOT LIKE 'qrtz_%' AND table_name NOT LIKE 'gen_%' AND table_name NOT LIKE 'sys_%'
 		AND table_name NOT IN (select table_name from "ADP"."gen_table")
 		<if test="tableName != null and tableName != ''">
 			AND lower(table_name) like lower(concat('%', #{tableName}, '%'))
 		</if>
 	</select>
 	
-	<select id="selectDbTableListByNames" resultMap="GenTableResult">
-		select table_name FROM USER_TABLES 
+	<select id="selectDbTableListByNames" resultType="GenTable">
+		select table_name AS tableName ,comments AS tableComment FROM user_tab_comments
 		where table_name NOT LIKE 'qrtz_%' and table_name NOT LIKE 'gen_%' 
-		and table_name in
+		 AND table_name NOT LIKE 'sys_%' and table_name in
 	    <foreach collection="array" item="name" open="(" separator="," close=")">
  			#{name}
         </foreach> 
 	</select>
 	
-	<select id="selectTableByName" parameterType="String" resultMap="GenTableResult">
-		select table_name FROM USER_TABLES where table_name = #{tableName}
+	<select id="selectTableByName" parameterType="String" resultType="GenTable">
+		select table_name AS tableName ,comments AS tableComment FROM user_tab_comments
+		where table_name = #{tableName}
 	</select>
 	
 	<select id="selectGenTableById" parameterType="Long" resultMap="GenTableResult">

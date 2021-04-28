@@ -25,6 +25,12 @@ public class GenTableColumn extends BaseEntity
     /** 列描述 */
     private String columnComment;
 
+    /** 字段长度 */
+    private String columnLength;
+
+    /** 数据精度 */
+    private String dataPrecision;
+
     /** 列类型 */
     private String columnType;
 
@@ -108,7 +114,23 @@ public class GenTableColumn extends BaseEntity
         return columnComment;
     }
 
-    public void setColumnType(String columnType)
+    public String getColumnLength() {
+		return columnLength;
+	}
+
+	public void setColumnLength(String columnLength) {
+		this.columnLength = columnLength;
+	}
+
+	public String getDataPrecision() {
+		return dataPrecision;
+	}
+
+	public void setDataPrecision(String dataPrecision) {
+		this.dataPrecision = dataPrecision;
+	}
+
+	public void setColumnType(String columnType)
     {
         this.columnType = columnType;
     }
