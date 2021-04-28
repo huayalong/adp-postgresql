@@ -49,10 +49,10 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 			AND r."data_scope" = #{dataScope}
 		</if>
 		<if test="params.beginTime != null and params.beginTime != ''"><!-- 开始时间检索 -->
-			and r."create_time &gt;= #{params.beginTime}
+			and r."create_time" &gt;= #{params.beginTime}
 		</if>
 		<if test="params.endTime != null and params.endTime != ''"><!-- 结束时间检索 -->
-			and r."create_time &lt;= #{params.endTime}
+			and r."create_time" &lt;= #{params.endTime}
 		</if>
 		<!-- 数据范围过滤 -->
 		${params.dataScope}
