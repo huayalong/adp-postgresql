@@ -30,53 +30,44 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
     </resultMap>
 	
 	<sql id="selectGenTableColumnVo">
-        select * from "ADP".""ADP"."gen_table_column""
+        select * from "ADP"."gen_table_column"
     </sql>
 	
     <select id="selectGenTableColumnListByTableId" parameterType="GenTableColumn" resultMap="GenTableColumnResult">
         <include refid="selectGenTableColumnVo"/>
         where cast("table_id" as integer) = #{tableId}
-        order by sort
+        order by "sort"
     </select>
     
     <select id="selectDbTableColumnsByName" parameterType="String" resultMap="GenTableColumnResult">
 		select
-            column_name,
-             is_required,
-             is_pk,
-             sort,
-            column_comment,
-             is_increment,
-            column_type
+            column_name, is_required, is_pk, sort, column_comment, is_increment, column_type
         from
             view_self_table_columns
-        where
-            table_catalog  = (select current_catalog)
-            and table_schema = (select	current_schema())
-            and table_name = (#{tableName})
+        where table_name = (#{tableName})
 	</select>
     
     <insert id="insertGenTableColumn" parameterType="GenTableColumn" useGeneratedKeys="true" keyProperty="columnId">
         insert into "ADP"."gen_table_column" (
-			<if test="tableId != null and tableId != ''">table_id,</if>
-			<if test="columnName != null and columnName != ''">column_name,</if>
-			<if test="columnComment != null and columnComment != ''">column_comment,</if>
-			<if test="columnType != null and columnType != ''">column_type,</if>
-			<if test="javaType != null and javaType != ''">java_type,</if>
-			<if test="javaField != null  and javaField != ''">java_field,</if>
-			<if test="isPk != null and isPk != ''">is_pk,</if>
-			<if test="isIncrement != null and isIncrement != ''">is_increment,</if>
-			<if test="isRequired != null and isRequired != ''">is_required,</if>
-			<if test="isInsert != null and isInsert != ''">is_insert,</if>
-			<if test="isEdit != null and isEdit != ''">is_edit,</if>
-			<if test="isList != null and isList != ''">is_list,</if>
-			<if test="isQuery != null and isQuery != ''">is_query,</if>
-			<if test="queryType != null and queryType != ''">query_type,</if>
-			<if test="htmlType != null and htmlType != ''">html_type,</if>
-			<if test="dictType != null and dictType != ''">dict_type,</if>
-			<if test="sort != null">sort,</if>
-			<if test="createBy != null and createBy != ''">create_by,</if>
-			create_time
+			<if test="tableId != null and tableId != ''">"table_id",</if>
+			<if test="columnName != null and columnName != ''">"column_name",</if>
+			<if test="columnComment != null and columnComment != ''">"column_comment",</if>
+			<if test="columnType != null and columnType != ''">"column_type",</if>
+			<if test="javaType != null and javaType != ''">"java_type",</if>
+			<if test="javaField != null  and javaField != ''">"java_field",</if>
+			<if test="isPk != null and isPk != ''">"is_pk",</if>
+			<if test="isIncrement != null and isIncrement != ''">"is_increment",</if>
+			<if test="isRequired != null and isRequired != ''">"is_required",</if>
+			<if test="isInsert != null and isInsert != ''">"is_insert",</if>
+			<if test="isEdit != null and isEdit != ''">"is_edit",</if>
+			<if test="isList != null and isList != ''">"is_list",</if>
+			<if test="isQuery != null and isQuery != ''">"is_query",</if>
+			<if test="queryType != null and queryType != ''">"query_type",</if>
+			<if test="htmlType != null and htmlType != ''">"html_type",</if>
+			<if test="dictType != null and dictType != ''">"dict_type",</if>
+			<if test="sort != null">"sort",</if>
+			<if test="createBy != null and createBy != ''">"create_by",</if>
+			"create_time"
          )values(
 			<if test="tableId != null and tableId != ''">#{tableId},</if>
 			<if test="columnName != null and columnName != ''">#{columnName},</if>
@@ -103,26 +94,26 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
     <update id="updateGenTableColumn" parameterType="GenTableColumn">
         update "ADP"."gen_table_column"
         <set>
-            column_comment = #{columnComment},
-            java_type = #{javaType},
-            java_field = #{javaField},
-            is_insert = #{isInsert},
-            is_edit = #{isEdit},
-            is_list = #{isList},
-            is_query = #{isQuery},
-            is_required = #{isRequired},
-            query_type = #{queryType},
-            html_type = #{htmlType},
-            dict_type = #{dictType},
-            sort = #{sort},
-            update_by = #{updateBy},
-            update_time = now()
+            "column_comment" = #{columnComment},
+            "java_type" = #{javaType},
+            "java_field" = #{javaField},
+            "is_insert" = #{isInsert},
+            "is_edit" = #{isEdit},
+            "is_list" = #{isList},
+            "is_query" = #{isQuery},
+            "is_required" = #{isRequired},
+            "query_type" = #{queryType},
+            "html_type" = #{htmlType},
+            "dict_type" = #{dictType},
+            "sort" = #{sort},
+            "update_by" = #{updateBy},
+            "update_time" = now()
         </set>
-        where column_id = #{columnId}
+        where "column_id" = #{columnId}
     </update>
 
     <delete id="deleteGenTableColumnByIds" parameterType="Long">
-        delete from "ADP"."gen_table_column" where table_id in 
+        delete from "ADP"."gen_table_column" where "table_id" in 
         <foreach collection="array" item="tableId" open="(" separator="," close=")">
             #{tableId}
         </foreach>
