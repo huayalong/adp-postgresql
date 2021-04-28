@@ -74,13 +74,13 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 			AND u."phonenumber" like concat('%', #{phonenumber}, '%')
 		</if>
 		<if test="params.beginTime != null and params.beginTime != ''"><!-- 开始时间检索 -->
-			AND u."create_time" &gt;= #{params.beginTime
+			AND u."create_time" &gt;= #{params.beginTime} 
 		</if>
 		<if test="params.endTime != null and params.endTime != ''"><!-- 结束时间检索 -->
-			AND u."create_time" &lt;= #{params.endTime}
+			AND u."create_time" &lt;= #{params.endTime} 
 		</if>
 		<if test="deptId != null and deptId != 0">
-			AND (u."dept_id" = #{deptId} OR u."dept_id" IN ( SELECT t."dept_id" FROM "ADP"."sys_dept" t WHERE FIND_IN_SET (#{deptId},ancestors) ))
+			AND (u."dept_id" = #{deptId} OR d."ancestors" like concat('%', #{deptId}, '%'))
 		</if>
 		<!-- 数据范围过滤 -->
 		${params.dataScope}
@@ -138,20 +138,19 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	</select>
 	
 	<select id="checkLoginNameUnique" parameterType="String" resultType="int">
-		select count(1) from "ADP"."sys_user" where "login_name"=#{loginName}
+		select count(1) from "ADP"."sys_user" where "login_name" = #{loginName}
 	</select>
 	
 	<select id="checkPhoneUnique" parameterType="String" resultMap="SysUserResult">
-		select "user_id", phonenumber from "ADP"."sys_user" where "phonenumber"=#{phonenumber}
+		select "user_id", "phonenumber" from "ADP"."sys_user" where "phonenumber" = #{phonenumber}
 	</select>
 	
 	<select id="checkEmailUnique" parameterType="String" resultMap="SysUserResult">
-		select "user_id", "email" from "ADP"."sys_user" where "email"=#{email}
+		select "user_id", "email" from "ADP"."sys_user" where "email" = #{email}
 	</select>
 	
 	<select id="selectUserById" parameterType="Long" resultMap="SysUserResult">
-		<include refid="selectUserVo"/>
-		where u."user_id" = #{userId}
+		<include refid="selectUserVo"/> where u."user_id" = #{userId}
 	</select>
 	
 	<delete id="deleteUserById" parameterType="Long">
