@@ -1,6 +1,8 @@
 package com.adp.generator.domain;
 
 import javax.validation.constraints.NotBlank;
+
+import com.adp.common.constant.Constants;
 import com.adp.common.core.domain.BaseEntity;
 import com.adp.common.utils.StringUtils;
 
@@ -104,17 +106,16 @@ public class GenTableColumn extends BaseEntity
         return columnName;
     }
 
-    public void setColumnComment(String columnComment)
-    {
-        this.columnComment = columnComment;
-    }
 
-    public String getColumnComment()
-    {
-        return columnComment;
-    }
+    public String getColumnComment() {
+		return columnComment;
+	}
 
-    public String getColumnLength() {
+	public void setColumnComment(String columnComment) {
+		this.columnComment = columnComment;
+	}
+
+	public String getColumnLength() {
 		return columnLength;
 	}
 
@@ -202,6 +203,9 @@ public class GenTableColumn extends BaseEntity
 
     public void setIsRequired(String isRequired)
     {
+    	if(StringUtils.isNoneBlank(isRequired) && Constants.NO.equals(isRequired) ) {
+    		isRequired = "1";
+    	}
         this.isRequired = isRequired;
     }
 

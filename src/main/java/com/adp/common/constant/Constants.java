@@ -91,4 +91,10 @@ public class Constants
      * 资源映射路径 前缀
      */
     public static final String RESOURCE_PREFIX = "/profile";
+
+    /**
+     * 是,否
+     */
+	public static final String YES = "Y";
+	public static final String NO = "N";
 }

@@ -42,6 +42,7 @@ public class GenUtils
         Integer columnLength = Integer.valueOf(column.getColumnLength());
         column.setTableId(table.getTableId());
         column.setCreateBy(table.getCreateBy());
+        column.setDictType(StringUtils.EMPTY); // 数据库存的是NULL,导致页面回显NULL
         // 设置java字段名
         column.setJavaField(StringUtils.toCamelCase(columnName));
         // java 数据类型
@@ -87,6 +88,7 @@ public class GenUtils
         // 类型&性别字段设置下拉框
         else if (StringUtils.endsWithIgnoreCase(columnName, "type") || StringUtils.endsWithIgnoreCase(columnName, "sex")){
             column.setHtmlType(GenConstants.HTML_SELECT);
+            column.setDictType("sys_user_sex");
         }
         // 文件字段设置上传控件
         else if (StringUtils.endsWithIgnoreCase(columnName, "file")){

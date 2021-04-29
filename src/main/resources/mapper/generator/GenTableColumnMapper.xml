@@ -39,27 +39,20 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         order by "sort"
     </select>
     
-    <select id="selectDbTableColumnsByName" parameterType="String" resultMap="GenTableColumnResult">
+    <select id="selectDbTableColumnsByName" parameterType="String" resultType="GenTableColumn">
 		select
-            l.column_name, 
-            l.nullable AS is_required, 
-            l.data_length AS columnLength,
-            l.data_precision AS dataPrecision,
-            l.column_id AS sort, 
-            l.data_type AS column_type 
-        FROM user_tab_columns l 
-        where l.table_name = #{tableName} 
-        
-        <!-- 
-        select
-		    l.column_name AS c, 
-		    l.nullable AS is_required, 
-		    l.data_length AS columnLength,
-		    l.data_precision AS dataPrecision, 
-		    l.data_type AS column_type,
-		    m.comments AS columnComment   
-		FROM  user_col_comments m left join user_tab_columns l on l.column_name = m.column_name    
-		where m.table_name = #{tableName}  -->
+            l.column_name columnName, 
+            l.nullable isRequired, 
+            l.data_length columnLength,
+            l.data_precision dataPrecision,
+            l.column_id sort, 
+            l.data_type columnType,
+            m.comments columnComment
+        FROM user_col_comments m
+        LEFT JOIN user_tab_columns l 
+        ON l.column_name = m.column_name and l.table_name = m.table_name
+		WHERE l.table_name = #{tableName} 
+        ORDER BY l.column_id 
 	</select>
     
     <insert id="insertGenTableColumn" parameterType="GenTableColumn" useGeneratedKeys="true" keyProperty="columnId">
@@ -79,9 +72,9 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 			<if test="isQuery != null and isQuery != ''">"is_query",</if>
 			<if test="queryType != null and queryType != ''">"query_type",</if>
 			<if test="htmlType != null and htmlType != ''">"html_type",</if>
-			<if test="dictType != null and dictType != ''">"dict_type",</if>
 			<if test="sort != null">"sort",</if>
 			<if test="createBy != null and createBy != ''">"create_by",</if>
+			"dict_type",
 			"create_time"
          )values(
 			<if test="tableId != null and tableId != ''">#{tableId},</if>
@@ -99,9 +92,9 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 			<if test="isQuery != null and isQuery != ''">#{isQuery},</if>
 			<if test="queryType != null and queryType != ''">#{queryType},</if>
 			<if test="htmlType != null and htmlType != ''">#{htmlType},</if>
-			<if test="dictType != null and dictType != ''">#{dictType},</if>
 			<if test="sort != null">#{sort},</if>
 			<if test="createBy != null and createBy != ''">#{createBy},</if>
+			#{dictType},
 			now()
          )
     </insert>
