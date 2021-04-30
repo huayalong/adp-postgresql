@@ -1,10 +1,10 @@
 # 数据源配置
 spring:
     datasource:
-        url: jdbc:dm://localhost:5236
-        username: ADP
-        password: Adp123456
-        driverClassName: dm.jdbc.driver.DmDriver
+        url: jdbc:postgresql://localhost:5432/pg_adp #?useUnicode=true&characterEncoding=utf8&zeroDateTimeBehavior=convertToNull&useSSL=true&serverTimezone=GMT%2B8
+        username: adp
+        password: rootroot
+        driverClassName: org.postgresql.Driver
         druid:
             # 初始连接数
             initialSize: 5
@@ -21,7 +21,7 @@ spring:
             # 配置一个连接在池中最大生存的时间，单位是毫秒
             maxEvictableIdleTimeMillis: 900000
             # 配置检测连接是否有效
-            validationQuery: SELECT * FROM "ADP"."sys_dept"
+            validationQuery: SELECT * FROM sys_dept
             testWhileIdle: true
             testOnBorrow: false
             testOnReturn: false

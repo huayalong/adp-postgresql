@@ -1,8 +1,6 @@
 package com.adp.generator.domain;
 
 import javax.validation.constraints.NotBlank;
-
-import com.adp.common.constant.Constants;
 import com.adp.common.core.domain.BaseEntity;
 import com.adp.common.utils.StringUtils;
 
@@ -26,12 +24,6 @@ public class GenTableColumn extends BaseEntity
 
     /** 列描述 */
     private String columnComment;
-
-    /** 字段长度 */
-    private String columnLength;
-
-    /** 数据精度 */
-    private String dataPrecision;
 
     /** 列类型 */
     private String columnType;
@@ -106,32 +98,17 @@ public class GenTableColumn extends BaseEntity
         return columnName;
     }
 
+    public void setColumnComment(String columnComment)
+    {
+        this.columnComment = columnComment;
+    }
 
-    public String getColumnComment() {
-		return columnComment;
-	}
+    public String getColumnComment()
+    {
+        return columnComment;
+    }
 
-	public void setColumnComment(String columnComment) {
-		this.columnComment = columnComment;
-	}
-
-	public String getColumnLength() {
-		return columnLength;
-	}
-
-	public void setColumnLength(String columnLength) {
-		this.columnLength = columnLength;
-	}
-
-	public String getDataPrecision() {
-		return dataPrecision;
-	}
-
-	public void setDataPrecision(String dataPrecision) {
-		this.dataPrecision = dataPrecision;
-	}
-
-	public void setColumnType(String columnType)
+    public void setColumnType(String columnType)
     {
         this.columnType = columnType;
     }
@@ -203,9 +180,6 @@ public class GenTableColumn extends BaseEntity
 
     public void setIsRequired(String isRequired)
     {
-    	if(StringUtils.isNoneBlank(isRequired) && Constants.NO.equals(isRequired) ) {
-    		isRequired = "1";
-    	}
         this.isRequired = isRequired;
     }
 

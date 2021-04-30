@@ -69,8 +69,8 @@ spring:
     restart:
       # 热部署开关
       enabled: true
-      additional-paths: src #重启目录
-      # exclude: WEB-INF/**
+      additional-paths: src/main/java #重启目录
+      exclude: WEB-INF/**
 
 # MyBatis
 mybatis:
@@ -98,7 +98,7 @@ shiro:
     # 首页地址
     indexUrl: /index
     # 验证码开关
-    captchaEnabled: false
+    captchaEnabled: true
     # 验证码类型 math 数组计算 char 字符
     captchaType: math
   cookie:

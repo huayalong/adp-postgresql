@@ -112,14 +112,4 @@ public class SysUserOnlineServiceImpl implements ISysUserOnlineService
         String lastAccessTime = DateUtils.parseDateToStr(DateUtils.YYYY_MM_DD_HH_MM_SS, expiredDate);
         return userOnlineDao.selectOnlineByExpired(lastAccessTime);
     }
-
-    /**
-     * 修改会话信息
-     * 
-     * @param online 会话信息
-     */
-	@Override
-	public void updateOnline(SysUserOnline online) {
-		userOnlineDao.updateOnline(online);		
-	}
 }

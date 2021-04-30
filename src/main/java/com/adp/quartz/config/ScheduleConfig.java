@@ -11,10 +11,10 @@ import java.util.Properties;
  * 
  * @author adp
  */
-//@Configuration
+@Configuration
 public class ScheduleConfig
 {
-    // @Bean
+    @Bean
     public SchedulerFactoryBean schedulerFactoryBean(DataSource dataSource)
     {
         SchedulerFactoryBean factory = new SchedulerFactoryBean();
